@@ -10,7 +10,8 @@ Portfolio_Revenue_Management/
 │   └── synthetic_data/
 │       └── synthetic_hotel_bookings.csv
 │   ├── hotel_booking_clean.csv
-│   └── kaggle_hotel_booking.csv
+│   ├── kaggle_hotel_booking.csv
+│   └── portfolio.db
 ├── 02_Python_Scripts/
 │   ├── analysis.py
 │   ├── data_cleaning.py
@@ -21,9 +22,8 @@ Portfolio_Revenue_Management/
 │   └── create_tables.sql
 ├── 04_PowerBI_Files/
 │   └── Portfolio_Hotel_Revenue_Management_Dashboard_JosepRiera.pbix
-├── 05_Documentation/
-│   └── dashboard_screenshot.png
-└── portfolio.db
+└── 05_Documentation/
+    └── dashboard_screenshot.png
 ```
 
 ## Project #1: Hotel Revenue Management Dashboard
