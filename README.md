@@ -7,18 +7,18 @@ This repository contains Revenue Management and Business Intelligence projects a
 ```
 Portfolio_Revenue_Management/
 ├── 01_Raw_Data/
-│   ├── kaggle_hotel_booking.csv
-│   ├── hotel_booking_clean.csv
 │   └── synthetic_data/
 │       └── synthetic_hotel_bookings.csv
+│   ├── hotel_booking_clean.csv
+│   └── kaggle_hotel_booking.csv
 ├── 02_Python_Scripts/
-│   ├── data_generation.py
-│   ├── data_cleaning.py
 │   ├── analysis.py
+│   ├── data_cleaning.py
+│   ├── data_generation.py
 │   └── load_to_sqlite.py
 ├── 03_SQL_Queries/
-│   ├── create_tables.sql
-│   └── analysis_queries.sql
+│   ├── analysis_queries.sql
+│   └── create_tables.sql
 ├── 04_PowerBI_Files/
 │   └── Portfolio_Hotel_Revenue_Management_Dashboard_JosepRiera.pbix
 ├── 05_Documentation/
