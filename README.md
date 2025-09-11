@@ -1,15 +1,16 @@
 # Portfolio_Revenue_Management
 
-Este repositorio contiene proyectos de Revenue Management y Business Intelligence aplicados a la industria hotelera.
+This repository contains Revenue Management and Business Intelligence projects applied to the hospitality industry.
 
-## Estructura de Carpetas
+## Folder Structure
 
 ```
 Portfolio_Revenue_Management/
 ├── 01_Raw_Data/
 │   ├── kaggle_hotel_booking.csv
-│   ├── synthetic_data/
-│   │   └── synthetic_hotel_bookings.csv
+│   ├── hotel_booking_clean.csv
+│   └── synthetic_data/
+│       └── synthetic_hotel_bookings.csv
 ├── 02_Python_Scripts/
 │   ├── data_generation.py
 │   ├── data_cleaning.py
@@ -25,71 +26,78 @@ Portfolio_Revenue_Management/
 └── portfolio.db
 ```
 
-## Proyecto #1: Hotel Revenue Management Dashboard
+## Project #1: Hotel Revenue Management Dashboard
 
-- **Archivo Power BI**: `04_PowerBI_Files/Portfolio_Hotel_Revenue_Management_Dashboard_JosepRiera.pbix`  
-- **Captura de pantalla**:
+- **Power BI File**: `04_PowerBI_Files/Portfolio_Hotel_Revenue_Management_Dashboard_JosepRiera.pbix`  
+- **Screenshot**:
 
   ![Dashboard Final](05_Documentation/dashboard_screenshot.png)
 
-- **Descripción**:  
-  Dashboard interactivo que permite:
-  - Visualizar **Average ADR (€)**, **Average Length of Stay** y **Cancellation Rate (%)**  
-  - Comparar **Average ADR by Hotel Type** con línea de promedio de portfolio  
-  - Ver tendencia mensual de volumen de reservas  
-  - Filtrar dinámicamente por **Market Segment** y **Country**
+- **Description**:  
+  Interactive dashboard that allows you to:
+  - View **Average ADR (€)**, **Average Length of Stay**, and **Cancellation Rate (%)**  
+  - Compare **Average ADR by Hotel Type** with a portfolio average line  
+  - See monthly booking volume trends  
+  - Dynamically filter by **Market Segment** and **Country**
 
-## Prerrequisitos
+## Prerequisites
 
 - **Software**  
   - Power BI Desktop (Windows)  
-  - Anaconda con Python 3.10+  
+  - Anaconda with Python 3.10+  
   - SQLite (macOS) / SQL Server Express (Windows)  
-  - Git y GitHub CLI (recomendado)
+  - Git and GitHub CLI (recommended)
 
-- **Librerías Python**  
-  Crear entorno y luego:
+- **Python Libraries**  
+  After creating and activating your environment, install:
   ```bash
   pip install pandas numpy sdv faker matplotlib seaborn plotly scikit-learn sqlalchemy jupyter
   ```
 
-## Pasos para reproducir
+## Reproduction Steps
 
-1. Clonar el repositorio  
+1. Clone the repository  
    ```bash
    git clone git@github.com:jopriera/Portfolio_Revenue_Management.git
    cd Portfolio_Revenue_Management
    ```
-2. Configurar entorno Python  
+2. Set up Python environment  
    ```bash
    conda create -n rm_portfolio python=3.10 -y
    conda activate rm_portfolio
    pip install pandas numpy sdv faker matplotlib seaborn plotly scikit-learn sqlalchemy jupyter
    ```
-3. Descargar datos y colocarlos en `01_Raw_Data/`  
-4. (Opcional) Generar datos sintéticos  
+3. Download datasets and place them in `01_Raw_Data/`  
+4. (Optional) Generate synthetic data  
    ```bash
    python 02_Python_Scripts/data_generation.py
    ```
-5. Cargar datos en SQLite  
+5. Clean data  
    ```bash
-   cd 02_Python_Scripts
-   python load_to_sqlite.py
+   python 02_Python_Scripts/data_cleaning.py
    ```
-6. Abrir dashboard en Power BI Desktop  
-   - Navegar a `04_PowerBI_Files/Portfolio_Hotel_Revenue_Management_Dashboard_JosepRiera.pbix` y abrir.
+6. Load data into SQLite  
+   ```bash
+   python 02_Python_Scripts/load_to_sqlite.py
+   ```
+7. Execute exploratory analysis  
+   ```bash
+   python 02_Python_Scripts/analysis.py
+   ```
+8. Open the dashboard in Power BI Desktop  
+  Navigate to `04_PowerBI_Files/Portfolio_Hotel_Revenue_Management_Dashboard_JosepRiera.pbix` and open it.
 
-## Skills Demostrados
+## Skills Demonstrated
 
 - Python: pandas, SDV, SQLite  
 - SQL: SQLite  
-- Power BI: DAX, visualizaciones interactivas  
+- Power BI: DAX, interactive visualizations  
 - Data Visualization & EDA
 
-## Próximos Pasos
+## Next Steps
 
-Proyecto #2: Análisis de Cancelaciones y Segmentación Avanzada
+Project #2: Cancellation Analysis and Advanced Segmentation
 
 ---
 
-Para feedback o dudas, abre un issue o contáctame por LinkedIn.
+For feedback or questions, open an issue or contact me on LinkedIn.
