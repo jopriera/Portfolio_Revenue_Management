@@ -1,0 +1,19 @@
+# Power BI & Tableau
+*.pbix
+*.twb
+
+# Python
+__pycache__/
+*.pyc
+environment.yml
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Databases
+*.db
+*.sqlite
+
+# Misc
+.DS_Store
