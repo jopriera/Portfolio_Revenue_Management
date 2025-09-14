@@ -1,30 +1,34 @@
--- analysis_queries.sql
--- Example queries to explore and validate hotel booking data
+/*
+  Script: analysis_queries.sql
+  Purpose: Key KPIs for hotel booking data exploration and validation
+  Author: Josep Riera
+  Date: 2025-09-14
+*/
 
--- 1. Count records by hotel and cancellation status
+-- 1. Total bookings by hotel type and cancellation status
 SELECT
-    hotel,
-    is_canceled,
-    COUNT(*) AS total
+  hotel AS HotelType,
+  is_canceled AS CanceledFlag,
+  COUNT(*) AS TotalBookings
 FROM hotel_bookings
 GROUP BY hotel, is_canceled;
 
 -- 2. Average ADR by hotel type
 SELECT
-    hotel,
-    ROUND(AVG(adr), 2) AS avg_adr
+  hotel AS HotelType,
+  ROUND(AVG(adr), 2) AS AvgADR
 FROM hotel_bookings
 GROUP BY hotel;
 
--- 3. Overall cancellation rate as a percentage
+-- 3. Overall cancellation rate (%)
 SELECT
-    ROUND(100.0 * SUM(is_canceled) / COUNT(*), 2) AS cancellation_rate_pct
+  ROUND(100.0 * SUM(is_canceled) / COUNT(*), 2) AS CancellationRatePct
 FROM hotel_bookings;
 
--- 4. Monthly booking volume by reservation date
+-- 4. Monthly booking volume by reservation status date
 SELECT
-    STRFTIME('%Y-%m', reservation_status_date) AS month,
-    COUNT(*) AS bookings
+  STRFTIME('%Y-%m', reservation_status_date) AS Month,
+  COUNT(*) AS BookingCount
 FROM hotel_bookings
-GROUP BY month
-ORDER BY month;
+GROUP BY Month
+ORDER BY Month;
