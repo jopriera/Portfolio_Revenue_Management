@@ -17,13 +17,14 @@
 
 ## 📁 Folder Structure  
 
-Portfolio_Revenue_Management/
+```Portfolio_Revenue_Management/
 ├── 01_Raw_Data/ # Raw and synthetic datasets
 ├── 02_Python_Scripts/ # Data generation, cleaning, analysis
 ├── 03_SQL_Queries/ # Schema creation & analysis queries
 ├── 04_PowerBI_Files/ # .pbix dashboards
 ├── 05_Tableau_Public/ # .twb workbooks for competitive analysis
 └── 06_Documentation/ # Screenshots, methodology, summaries
+```
 
 
 ---  
@@ -52,17 +53,17 @@ Each project folder contains a detailed `README.md` with goals, data sources, us
 - **SQLite** (or SQL Server Express on Windows)  
 - **Git** & **GitHub CLI**  
 
-Create Python environment
+``` Create Python environment
 conda create -n rm_portfolio python=3.10 -y
 conda activate rm_portfolio
 
 Install libraries
 pip install pandas numpy sdv faker matplotlib seaborn plotly scikit-learn sqlalchemy jupyter
-
+```
 ---  
 
 ## 🚩 Installation & Reproduction  
-
+```
 1. Clone repository
 git clone https://github.com/jopriera/Portfolio_Revenue_Management.git
 cd Portfolio_Revenue_Management
@@ -82,7 +83,7 @@ python 02_Python_Scripts/analysis.py
 
 7. Open Power BI dashboard
 04_PowerBI_Files/Portfolio_Hotel_Revenue_Management_Dashboard_JosepRiera.pbix
-
+```
 
 ---  
 
