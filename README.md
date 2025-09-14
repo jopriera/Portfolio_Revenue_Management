@@ -98,6 +98,6 @@ python 02_Python_Scripts/analysis.py
 ## 📬 Contact & Links  
 - LinkedIn: https://www.linkedin.com/in/jrieraq/  
 - Email: joseprieraq@gmail.com 
-- IBM Coursera Certificates: https://www.coursera.org/jopriera  
+- IBM Coursera Certificates: [https://www.coursera.org/jopriera ](https://www.coursera.org/learner/josep-riera) 
 
 ---  
