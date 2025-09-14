@@ -25,3 +25,6 @@ rm_portfolio/
 
 # VSCode
 .vscode/
+
+# Ignore Power BI desktop files
+*.pbix
