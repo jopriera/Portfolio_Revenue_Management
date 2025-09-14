@@ -5,7 +5,7 @@
 
 ---  
 
-## 🚀 Table of Contents  
+## Table of Contents  
 1. [Folder Structure](#folder-structure)  
 2. [Projects Overview](#projects-overview)  
 3. [Prerequisites](#prerequisites)  
@@ -15,7 +15,7 @@
 
 ---  
 
-## 📁 Folder Structure  
+## Folder Structure  
 
 ```Portfolio_Revenue_Management/
 ├── 01_Raw_Data/ # Raw and synthetic datasets
@@ -29,7 +29,7 @@
 
 ---  
 
-## 📊 Projects Overview  
+## Projects Overview  
 1. **Dashboard Revenue Management**  
    - Visualize ADR, length of stay, cancellation rate, segment filters  
 2. **Forecasting Estacional**  
@@ -47,7 +47,7 @@ Each project folder contains a detailed `README.md` with goals, data sources, us
 
 ---  
 
-## ⚙️ Prerequisites  
+##  Prerequisites  
 - **Power BI Desktop** (Windows)  
 - **Python 3.10+** (Anaconda distribution recommended)  
 - **SQLite** (or SQL Server Express on Windows)  
@@ -62,7 +62,7 @@ pip install pandas numpy sdv faker matplotlib seaborn plotly scikit-learn sqlalc
 ```
 ---  
 
-## 🚩 Installation & Reproduction  
+##  Installation & Reproduction  
 ```
 1. Clone repository
 git clone https://github.com/jopriera/Portfolio_Revenue_Management.git
