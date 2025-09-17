@@ -15,10 +15,8 @@ Date: September 2025
 \"\"\"
 
 import pandas as pd
-import numpy as np
 import logging
 from prophet import Prophet
-from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
