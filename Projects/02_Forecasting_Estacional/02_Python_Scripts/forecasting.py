@@ -1,4 +1,4 @@
-\"\"\"
+"""
 forecasting.py - Revenue Management Forecasting with Prophet
 
 Purpose:
@@ -12,7 +12,7 @@ Usage:
 
 Author: Josep Riera Querol
 Date: September 2025
-\"\"\"
+"""
 
 import pandas as pd
 import logging
