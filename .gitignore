@@ -28,3 +28,10 @@ rm_portfolio/
 
 # Ignore Power BI desktop files
 *.pbix
+
+# pytest cache
+.pytest_cache/
+
+# Coverage reports
+.coverage
+coverage.xml
