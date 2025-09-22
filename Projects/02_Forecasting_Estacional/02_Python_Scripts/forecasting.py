@@ -22,9 +22,19 @@ from prophet import Prophet
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# Paths
+input_path = '../01_Raw_Data/forecast_raw.csv'
+output_path = '../01_Raw_Data/forecast_output.csv'
+
 def load_and_validate_data(file_path):
-    df = pd.read_csv(file_path, parse_dates=['date'])
-    df = df.rename(columns={'date':'ds','occupancy':'y'})
+    df = pd.read_csv(file_path)
+    df['date'] = pd.to_datetime(
+        df['arrival_date_year'].astype(str) + '-' +
+        df['arrival_date_month'] + '-' +
+        df['arrival_date_day_of_month'].astype(str),
+        format='%Y-%B-%d'
+    )
+    df = df[['date', 'adr']].rename(columns={'date':'ds', 'adr':'y'})
     return df
 
 def create_prophet_model():
@@ -40,14 +50,19 @@ def generate_forecast(model, df, periods=90):
 def save_results(forecast, output_path):
     forecast[['ds','yhat']].to_csv(output_path, index=False)
 
-def main():
-    input_path = '../01_Raw_Data/forecast_raw.csv'
-    output_path = '../01_Raw_Data/forecast_output.csv'
+def run_forecast():
+    """
+    run_forecast: load data, train Prophet model, generate forecast, and save results.
+    Separated for testing and coverage measurement.
+    """
     df = load_and_validate_data(input_path)
     model = create_prophet_model()
     forecast = generate_forecast(model, df)
     save_results(forecast, output_path)
     logger.info('Forecast completed and saved.')
+
+def main():
+    run_forecast()
 
 if __name__ == '__main__':
     main()

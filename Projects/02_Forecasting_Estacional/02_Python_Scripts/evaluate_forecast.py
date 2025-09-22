@@ -1,5 +1,5 @@
 """
-evaluate_forecast.py - Forecast Evaluation and Metrics Generation
+evaluate_forecast.py – Forecast Evaluation and Metrics Generation
 
 Purpose:
     Evaluate forecast accuracy and generate metrics for badges and reporting
@@ -8,64 +8,41 @@ Usage:
     python evaluate_forecast.py
 """
 
-import pandas as pd
+import os
 import json
-from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error
+import pandas as pd
+from sklearn.metrics import mean_absolute_error
 
-def load_data():
-    # Load real data
-    actual = pd.read_csv('../01_Raw_Data/forecast_raw.csv')
-    actual['date'] = pd.to_datetime(
-        actual['arrival_date_year'].astype(str) + '-' +
-        actual['arrival_date_month'] + '-' +
-        actual['arrival_date_day_of_month'].astype(str),
-        format='%Y-%B-%d'
-    )
-    actual = actual[['date', 'adr']].rename(columns={'date':'ds', 'adr':'actual'})
-    
-    # Filter ADR values = 0 (cancelled reservations or no rate)
-    actual = actual[actual['actual'] > 0]
-    
-    # Load forecast
-    forecast = pd.read_csv('../01_Raw_Data/forecast_output.csv', parse_dates=['ds'])
-    forecast = forecast[['ds', 'yhat']].rename(columns={'yhat':'predicted'})
-    
-    return actual, forecast
-
-def calculate_metrics(actual, forecast):
-    # Merge only on dates that have ADR > 0
-    df = pd.merge(actual, forecast, on='ds', how='inner')
-    
-    if len(df) == 0:
-        return {'error': 'No matching dates between actual and forecast data'}
-    
-    metrics = {
-        'mae': mean_absolute_error(df['actual'], df['predicted']),
-        'mape': mean_absolute_percentage_error(df['actual'], df['predicted']) * 100,
-        'rmse': ((df['actual'] - df['predicted']) ** 2).mean() ** 0.5,
-        'samples': len(df),
-        'date_range': f"{df['ds'].min().strftime('%Y-%m-%d')} to {df['ds'].max().strftime('%Y-%m-%d')}"
+def calculate_metrics(actual: pd.DataFrame, forecast: pd.DataFrame) -> dict:
+    # Merge on 'ds' using original columns 'y' and 'yhat'
+    df = pd.merge(actual, forecast, on="ds", how="inner")
+    # Rename AFTER merge so we have 'actual' and 'predicted' columns
+    df = df.rename(columns={"y": "actual", "yhat": "predicted"})
+    return {
+        "mae": mean_absolute_error(df["actual"], df["predicted"]),
+        "mape": (abs(df["actual"] - df["predicted"]) / df["actual"]).mean() * 100,
     }
+
+def run_evaluation(actual: pd.DataFrame, forecast: pd.DataFrame, out_dir: str) -> dict:
+    metrics = calculate_metrics(actual, forecast)
+    os.makedirs(out_dir, exist_ok=True)
+    out_file = os.path.join(out_dir, "metrics.json")
+    with open(out_file, "w") as f:
+        json.dump(metrics, f, indent=2)
     return metrics
 
-def main():
-    try:
-        actual, forecast = load_data()
-        metrics = calculate_metrics(actual, forecast)
-        
-        # Create folder if doesn't exist
-        import os
-        os.makedirs('../05_Documentation', exist_ok=True)
-        
-        # Save metrics
-        with open('../05_Documentation/metrics.json', 'w') as f:
-            json.dump(metrics, f, indent=2)
-        
-        print(f"Metrics: MAE={metrics['mae']:.2f}, MAPE={metrics['mape']:.2f}%, RMSE={metrics['rmse']:.2f}")
-        print(f"Samples: {metrics['samples']}, Date range: {metrics['date_range']}")
-        
-    except Exception as e:
-        print(f"Error: {str(e)}")
+def load_data(raw_path: str, forecast_path: str):
+    actual = pd.read_csv(raw_path, parse_dates=["ds"])
+    forecast = pd.read_csv(forecast_path, parse_dates=["ds"])
+    return actual, forecast
 
-if __name__ == '__main__':
+def main():
+    base = os.path.dirname(__file__)
+    raw = os.path.join(base, "../01_Raw_Data/forecast_raw.csv")
+    fore = os.path.join(base, "../01_Raw_Data/forecast_output.csv")
+    actual, forecast = load_data(raw, fore)
+    metrics = run_evaluation(actual, forecast, "../05_Documentation")
+    print(metrics)
+
+if __name__ == "__main__":
     main()

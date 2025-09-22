@@ -1,103 +1,108 @@
-# Portfolio Revenue Management  
-**Josep Riera Querol** – Revenue Analyst | Power BI Specialist | MBA BI & Big Data  
+# Portfolio Revenue Management
+**Josep Riera Querol** – Revenue Analyst | Power BI Specialist | MBA BI & Big Data
 
-> This repository showcases six end-to-end revenue management BI projects using real and synthetic hotel data. Each folder contains raw data, scripts, queries, dashboards, and documentation.  
+> This repository showcases six end-to-end revenue management BI projects using real and synthetic hotel data. Each folder contains raw data, scripts, queries, dashboards, and documentation.
 
----  
+---
 
-## Table of Contents  
-1. [Folder Structure](#folder-structure)  
-2. [Projects Overview](#projects-overview)  
-3. [Prerequisites](#prerequisites)  
-4. [Installation & Reproduction](#installation--reproduction)  
-5. [Skills Demonstrated](#skills-demonstrated)  
-6. [Contact & Links](#contact--links)  
+## Table of Contents
+1. [Folder Structure](#folder-structure)
+2. [Projects Overview](#projects-overview)
+3. [Prerequisites](#prerequisites)
+4. [Installation & Reproduction](#installation--reproduction)
+5. [Testing & Coverage](#testing--coverage)
+6. [Skills Demonstrated](#skills-demonstrated)
+7. [Contact & Links](#contact--links)
 
----  
+---
 
-## Folder Structure  
+## Folder Structure
 
 ```Portfolio_Revenue_Management/
-├── 01_Raw_Data/ # Raw and synthetic datasets
-├── 02_Python_Scripts/ # Data generation, cleaning, analysis
-├── 03_SQL_Queries/ # Schema creation & analysis queries
-├── 04_PowerBI_Files/ # .pbix dashboards
-├── 05_Tableau_Public/ # .twb workbooks for competitive analysis
-└── 06_Documentation/ # Screenshots, methodology, summaries
+├── 01_Raw_Data/             # Raw and synthetic datasets
+├── 02_Python_Scripts/       # Data generation, cleaning, analysis, forecasting scripts
+├── 03_SQL_Queries/          # Schema creation & analysis queries
+├── 04_PowerBI_Files/        # .pbix dashboards
+├── 05_Tableau_Public/       # .twb workbooks for competitive analysis
+└── 06_Documentation/        # Screenshots, methodology, summaries
 ```
 
+---
 
----  
+## Projects Overview
+1. **Dashboard Revenue Management**  - Visualize ADR, length of stay, cancellation rate, segment filters
+2. **Forecasting Estacional**       - Predict occupancy and ADR trends with time-series models
+3. **Channel Management**           - Compare booking channels (OTA vs direct) performance
+4. **F&B Revenue Analysis**         - Analyze restaurant and event revenues
+5. **Competitive Benchmarking**     - Benchmark against industry peers using STR data
+6. **Customer Analytics**           - Perform RFM and loyalty profiling
 
-## Projects Overview  
-1. **Dashboard Revenue Management**  
-   - Visualize ADR, length of stay, cancellation rate, segment filters  
-2. **Forecasting Estacional**  
-   - Predict occupancy and ADR trends with time-series models  
-3. **Channel Management**  
-   - Compare booking channels (OTA vs direct) performance  
-4. **F&B Revenue Analysis**  
-   - Analyze restaurant and event revenues  
-5. **Competitive Benchmarking**  
-   - Benchmark against industry peers using STR data  
-6. **Customer Analytics**  
-   - Perform RFM and loyalty profiling  
+Each project folder contains a detailed `README.md` with goals, data sources, usage steps, and key insights.
 
-Each project folder contains a detailed `README.md` with goals, data sources, usage steps, and key insights.  
+---
 
----  
+## Prerequisites
+- **Power BI Desktop** (Windows)
+- **Python 3.10+** (Anaconda distribution recommended)
+- **SQLite** (or SQL Server Express on Windows)
+- **Git** & **GitHub CLI**
 
-##  Prerequisites  
-- **Power BI Desktop** (Windows)  
-- **Python 3.10+** (Anaconda distribution recommended)  
-- **SQLite** (or SQL Server Express on Windows)  
-- **Git** & **GitHub CLI**  
-
-``` Create Python environment
+```bash
 conda create -n rm_portfolio python=3.10 -y
 conda activate rm_portfolio
+``` 
 
-Install libraries
-pip install pandas numpy sdv faker matplotlib seaborn plotly scikit-learn sqlalchemy jupyter
-```
----  
+---
 
-##  Installation & Reproduction  
-```
+## Installation & Reproduction
 1. Clone repository
+```bash
 git clone https://github.com/jopriera/Portfolio_Revenue_Management.git
 cd Portfolio_Revenue_Management
-
-2. Place raw datasets in 01_Raw_Data/ (download from Kaggle or generate synthetic)
-3. (Optional) Generate synthetic data
-python 02_Python_Scripts/data_generation.py
-
-4. Clean and prepare data
-python 02_Python_Scripts/data_cleaning.py
-
-5. Load into SQLite
-python 02_Python_Scripts/load_to_sqlite.py
-
-6. Run exploratory analysis
-python 02_Python_Scripts/analysis.py
-
-7. Open Power BI dashboard
-04_PowerBI_Files/Portfolio_Hotel_Revenue_Management_Dashboard_JosepRiera.pbix
 ```
 
----  
+2. Install libraries
+```bash
+pip install -r common/requirements.txt
+```
 
-## 🛠 Skills Demonstrated  
-- **Python**: pandas, SDV synthetic data, data cleaning, forecasting  
-- **SQL**: database schema design, complex queries (SQLite)  
+3. Run Forecasting Estacional example
+```bash
+pytest --cov=Projects/02_Forecasting_Estacional/02_Python_Scripts -v
+coverage html -d htmlcov
+open htmlcov/index.html
+```
+
+---
+
+## Testing & Coverage
+Run all tests with coverage:
+```bash
+pytest --cov=Projects/02_Forecasting_Estacional/02_Python_Scripts -v
+```
+
+Generate HTML coverage report:
+```bash
+coverage html -d htmlcov
+open htmlcov/index.html
+```
+
+Install testing dependencies:
+```bash
+pip install pytest pytest-mock pytest-cov
+```
+
+---
+
+## 🛠 Skills Demonstrated
+- **Python**: pandas, scikit-learn, prophet, data cleaning, forecasting  
+- **SQL**: database schema design, complex queries  
 - **Power BI**: data modeling, DAX measures, interactive dashboards  
-- **Data Visualization**: matplotlib, seaborn, plotly, Tableau Public  
+- **Data Visualization**: matplotlib, seaborn, plotly, Tableau Public
 
----  
+---
 
-## 📬 Contact & Links  
-- LinkedIn: https://www.linkedin.com/in/jrieraq/  
-- Email: joseprieraq@gmail.com 
-- IBM Coursera Certificates: [https://www.coursera.org/jopriera ](https://www.coursera.org/learner/josep-riera) 
-
----  
+## 📬 Contact & Links
+- LinkedIn: [linkedin.com/in/jrieraq](https://linkedin.com/in/jrieraq)  
+- Email: joseprieraq@gmail.com  
+- IBM Coursera Certificates: [coursera.org/learner/josep-riera](https://coursera.org/learner/josep-riera)
