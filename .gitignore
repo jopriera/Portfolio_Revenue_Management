@@ -26,5 +26,12 @@ rm_portfolio/
 # VSCode
 .vscode/
 
-# Ignore Power BI desktop files
-*.pbix
+# pytest cache
+.pytest_cache/
+
+# Coverage reports
+.coverage
+coverage.xml
+
+# Ignore test artifacts
+Projects/02_Forecasting_Estacional/05_Documentation/metrics.json
