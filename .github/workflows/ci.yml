@@ -30,7 +30,7 @@ jobs:
         pytest --maxfail=1 --disable-warnings --cov=Projects/02_Forecasting_Estacional/02_Python_Scripts
 
     - name: Upload coverage as artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3.2.1
       with:
         name: coverage-report
         path: htmlcov/
